@@ -72,12 +72,15 @@ A community driven app meant to find and share deals in your area.
    *Stream
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-
-### [BONUS] Digital Wireframes & Mockups
+<img src="Login_Activity.png" width=600>
+<img src="Tag_Activity.png" width=600>
+<img src="Main_Activity.png" width=600>
+<img src="Post_Activity.png" width=600>
+<img src="Search_Activity.png" width=600>
 
 ### [BONUS] Interactive Prototype
+
+https://www.figma.com/proto/Hika3OgwIa0pmNEmoHUzaQ/Steal-tastic?node-id=3%3A3&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=3%3A3
 
 ## Schema 
 [This section will be completed in Unit 9]
