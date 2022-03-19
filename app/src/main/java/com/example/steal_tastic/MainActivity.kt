@@ -10,13 +10,12 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-/** database & login/sign up activities
+/** database & login/sign up activities (Liza)
  * -tell us api keys
  * -mandatory follow categories
- * main activity
+ * main activity (Abdullah)
  * -feed of categories they follow
  * -task bar for navigation
- *post activity
- *
- *search activity
+ *post activity (Kristle)
+ *search activity (Nina)
  * **/

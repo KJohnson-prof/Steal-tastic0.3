@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Steal-tastic</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Change BOTH strings as required -->
+    <string name="back4app_app_id">Lu1UlPEg4OwpyacLMAlv9A3a8h9GVm5crQ9YLbk1</string>
+    <string name="back4app_client_key">UEvcneWWICrZb8WPPN4CErh96sfmCRW80QrQIDXH</string>
 </resources>
