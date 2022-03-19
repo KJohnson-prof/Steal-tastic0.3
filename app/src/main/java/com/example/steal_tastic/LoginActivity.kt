@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.parse.ParseUser
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,14 +51,14 @@ class LoginActivity : AppCompatActivity() {
             if(e == null){
                 Log.i(TAG, "Successfully signed up user")
                 //Navigate the user to the MainActivity
-                goToMainActivty()
+                goToMainActivity()
             }
             else{
                 //Show toast to indicate user success
                 Toast.makeText(this, "Unsuccessful sign up", Toast.LENGTH_SHORT).show()
 
                 //for the developer to see whats wrong
-                e.printStackTracce()
+                e.printStackTrace()
             }
 
         }
@@ -66,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginUser(username: String, password: String) {
         //Background network call
-        ParseUser.logInInBackGround(username, password, ({user, e ->
+        ParseUser.logInInBackground(username, password, ({user, e ->
             if(user != null){
                 Log.i(TAG, "Successfully logged in user")
                 goToMainActivity()
