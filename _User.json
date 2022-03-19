@@ -1,0 +1,20 @@
+{
+"results" : [
+
+  {
+    "objectId": "BKC5aLojOI",
+    "username": "codepath",
+    "createdAt": "2022-03-19T20:52:33.532Z",
+    "updatedAt": "2022-03-19T20:52:33.532Z",
+    "ACL": {
+      "*": {
+        "read": true
+      },
+      "BKC5aLojOI": {
+        "read": true,
+        "write": true
+      }
+    }
+  }
+]
+}
