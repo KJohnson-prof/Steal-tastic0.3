@@ -72,7 +72,7 @@ A community driven app meant to find and share deals in your area.
    *Stream
 
 ## Wireframes
-<img src="Login_Activity.png" width=600>
+<img src="Login_Register_Activity.png" width=600>
 <img src="Tag_Activity.png" width=600>
 <img src="Main_Activity.png" width=600>
 <img src="Post_Activity.png" width=600>
