@@ -47,8 +47,31 @@ class ComposeFragment : Fragment() {
         view.findViewById<Button>(R.id.btnSubmit).setOnClickListener{
             val description = view.findViewById<EditText>(R.id.etDescription).text.toString()
             val user = ParseUser.getCurrentUser()
+
+            val itemName = view.findViewById<EditText>(R.id.etItem).text.toString()
+            val address = view.findViewById<EditText>(R.id.etAddress).text.toString()
+            var tags = view.findViewById<EditText>(R.id.etTag).text.toString()
+
+            // tag string to arraylist block
+            val tagList = arrayListOf<String>()
+            val reps = tags.filter{it == ';'}.count()
+            var index = tags.indexOf(";")
+                for (i in 0..reps) {
+                    if(index == -1)
+                        tagList[i] = tags
+                    else {
+                        tagList[i] = tags.substring(0, index)
+                        tags = tags.substring(index+1, tags.length)
+                    }
+                    index = tags.indexOf(";")
+                }
+            /**
+             * So I found the amount of occurrences of the separators made the loop run that may time
+             * I found the index of the separator to make a substring to add to the arraylist
+             * the last word won't have an index of the separator so when that happens "when index is -1" just adds the word to the arraylist
+             */
             if(photoFile != null) {
-                submitPost(description, user, photoFile!!)
+                submitPost(description, user, photoFile!!, itemName, address, tagList)
             }else{
 
             }
@@ -58,11 +81,16 @@ class ComposeFragment : Fragment() {
         }
     }
 
-    fun submitPost(description: String, user: ParseUser, file: File){
+    fun submitPost(description: String, user: ParseUser, file: File, itemName: String, address: String, tags: ArrayList<String>){
         val post = Post()
         post.setDescription(description)
         post.setUser(user)
         post.setImage(ParseFile(file))
+
+        post.setItemName(itemName)
+        post.setAddress(address)
+        post.setTagList(tags)
+
         post.saveInBackground(){exception ->
             if(exception != null){
                 Log.e(TAG, "Error while saving post")

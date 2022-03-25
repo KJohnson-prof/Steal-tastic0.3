@@ -91,9 +91,10 @@ open class SearchFragment : Fragment() {
                         }
 
                         for(item in posts){
-                            if(){ //if post has a tag of search value the add to list.
+                            //if(){ //if post has a tag of search value the add to list.
+                                //Search the post's tag array for this -Kristle
                                 allPosts.add(item)
-                            }
+                            //}
 
                         }
 
