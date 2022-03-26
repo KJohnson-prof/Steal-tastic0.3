@@ -29,7 +29,7 @@ A community driven app meant to find and share deals in your area.
 **Required Must-have Stories**
 
 * User can register a new account
-* User can login
+* [X]User can login
 * User can make a post using picture, description, address, and add categories
 * user can view posts from others
 * user can view posts of a specific category
@@ -42,6 +42,9 @@ A community driven app meant to find and share deals in your area.
 * User can tap a tag to view more posts of that that type
 * User can save posts
 * Settings screen
+
+**Progress**
+<img src="week1Progress.gif"/>
 
 ### 2. Screen Archetypes
 
