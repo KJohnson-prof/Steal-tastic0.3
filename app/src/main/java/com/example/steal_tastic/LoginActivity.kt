@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
             if(e == null){
                 Log.i(TAG, "Successfully signed up user")
                 //Navigate the user to the MainActivity
-                goToMainActivity()
+                goToSignUpActivity()
             }
             else{
                 //Show toast to indicate user success
@@ -92,6 +92,13 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this@LoginActivity, MainActivity::class.java)
         startActivity(intent)
         //When user press back button, it would exit out of app instead of back to login page
+        finish()
+    }
+
+    //Creating a method to enter SignUpActivity (tags)
+    private fun goToSignUpActivity(){
+        val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
+        startActivity(intent)
         finish()
     }
 
