@@ -38,39 +38,11 @@ class LoginActivity : AppCompatActivity() {
 
         //Setting up an onClickListener for the sign up button
         findViewById<Button>(R.id.bt_signUp).setOnClickListener{
-            val username = findViewById<EditText>(R.id.et_username).text.toString()
-            val password = findViewById<EditText>(R.id.et_password).text.toString()
-            signUpUser(username, password)
+            goToSignUpActivity()
         }
         //End of onCreate()
     }
 
-    private fun signUpUser(username: String, password: String) {
-        //Creating the ParseUser
-        val user = ParseUser()
-
-        //Setting the fields for the user to be created
-        user.setUsername(username)
-        user.setPassword(password)
-
-        //Was signup successful?
-        user.signUpInBackground{ e->
-            if(e == null){
-                Log.i(TAG, "Successfully signed up user")
-                //Navigate the user to the MainActivity
-                goToSignUpActivity()
-            }
-            else{
-                //Show toast to indicate user success
-                Toast.makeText(this, "Unsuccessful sign up", Toast.LENGTH_SHORT).show()
-
-                //for the developer to see whats wrong
-                e.printStackTrace()
-            }
-
-        }
-        //End of signUpUser()
-    }
 
     private fun loginUser(username: String, password: String) {
         //Background network call
