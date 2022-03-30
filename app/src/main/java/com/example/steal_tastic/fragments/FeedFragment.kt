@@ -12,6 +12,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.steal_tastic.Post
 import com.example.steal_tastic.PostAdapter
 import com.example.steal_tastic.R
+import com.parse.FindCallback
+import com.parse.ParseException
 import com.parse.ParseQuery
 import com.parse.ParseUser
 
@@ -19,8 +21,8 @@ import com.parse.ParseUser
 class FeedFragment : Fragment() {
 
     lateinit var postsRecyclerView: RecyclerView
-    lateinit var postsAdapter : PostAdapter
-    var allPosts : MutableList<Post> = mutableListOf()
+    lateinit var postsAdapter: PostAdapter
+    var allPosts: MutableList<Post> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,38 +40,35 @@ class FeedFragment : Fragment() {
         postsRecyclerView.adapter = postsAdapter
 
         postsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        queryPosts()
     }
 
-    open fun queryPosts(isCurrentUserOnly : Boolean) {
+    open fun queryPosts() {
         val query: ParseQuery<Post> = ParseQuery.getQuery(Post::class.java)
 
         query.include(Post.KEY_USER)
 
-        if(isCurrentUserOnly) {
-            query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser())
-        }
-
-        query.addDescendingOrder("createdAt")
-
-        query.limit = 20
-
-        query.findInBackground { posts, e ->
-            if (e != null) {
-                e.printStackTrace()
-            } else {
-                if (posts != null) {
-                    for (post in posts) {
-                        Log.i(TAG, "Post: " + post.getDescription() + "; username: " + post.getUser()?.username)
+        query.findInBackground(object : FindCallback<Post> {
+            override fun done(posts: MutableList<Post>?, e: ParseException?) {
+                if (e != null) {
+                    Log.e(TAG, "Error fetching posts")
+                } else {
+                    if (posts != null) {
+                        for (post in posts) {
+                            Log.i(TAG, "Post: " + post.getDescription() + post.getUser()?.username)
+                        }
+                        allPosts.addAll(posts)
+                        postsAdapter.notifyDataSetChanged()
                     }
-                    allPosts.addAll(posts)
-                    postsAdapter.notifyDataSetChanged()
-
                 }
             }
-        }
+        })
+
+
     }
 
-    companion object{
+
+    companion object {
         const val TAG = "FeedFragment"
     }
 }
