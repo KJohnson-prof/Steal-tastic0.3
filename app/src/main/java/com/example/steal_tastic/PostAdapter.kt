@@ -47,7 +47,12 @@ class PostAdapter(val context: Context, val posts: MutableList<Post>) : Recycler
             tvItem.text = post.getItemName()
             tvAddress.text = post.getAddress()
             tvDescription.text = post.getDescription()
-            tvTag.text = post.getTagList().toString()
+
+            val arrTags = post.getTagList()
+            for(i in 0 until arrTags!!.length())
+            {
+                tvTag.text = tvTag.text.toString() + arrTags.getString(i)
+            }
 
             Glide.with(itemView.context).load(post.getImage()?.url).into(ivImage)
         }
