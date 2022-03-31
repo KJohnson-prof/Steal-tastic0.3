@@ -44,7 +44,7 @@ class FeedFragment : Fragment() {
         queryPosts()
     }
 
-    open fun queryPosts(){
+    protected fun queryPosts(){
         val query: ParseQuery<Post> = ParseQuery.getQuery(Post::class.java)
 
         query.include(Post.KEY_USER)
@@ -56,13 +56,16 @@ class FeedFragment : Fragment() {
                 if(e != null){
                     Log.e(TAG, "Error fetching posts")
                 }else{
-                    if(posts != null){
+                    if (posts != null) {
                         for(post in posts){ //java.lang.ClassCastException: com.parse.ParseObject cannot be cast to com.example.steal_tastic.Post
                             Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser()?.username)
                         }
-                        allPosts.addAll(posts)
-                        postsAdapter.notifyDataSetChanged()
                     }
+                    if (posts != null) {
+                        allPosts.addAll(posts)
+                    }
+                        postsAdapter.notifyDataSetChanged()
+
                 }
             }
         })
