@@ -39,7 +39,7 @@ class FeedFragment : Fragment() {
 
         postsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        queryPosts(true) //when false app crashes
+        queryPosts(false) //idk what's actually supposed to go inside the parentheses
     }
 
     open fun queryPosts(isCurrentUserOnly : Boolean) {
