@@ -64,7 +64,6 @@ open class SearchFragment : Fragment() {
         adapter = PostAdapter(requireContext(), allPosts as ArrayList<Post>)
         searchRecyclerView.adapter = adapter
         //5. Set layout manager on RecyclerView
-
         searchRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         //queryPosts()
