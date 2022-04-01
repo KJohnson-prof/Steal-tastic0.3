@@ -66,9 +66,8 @@ class AddFirstTagsActivity() : AppCompatActivity() {
 
         //If the user presses done then save all of the tags to back4app and then go to the MainActivity
         findViewById<Button>(R.id.bt_done).setOnClickListener{
-
-
-
+            saveItems()
+            goToMainActivity()
         }
 
 
@@ -76,7 +75,8 @@ class AddFirstTagsActivity() : AppCompatActivity() {
 
     //Adding the tags into parse
     fun saveItems(){
-
+        user.put("tagsList",listOfTags)
+        user.saveInBackground()
 
     }
 

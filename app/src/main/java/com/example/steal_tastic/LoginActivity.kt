@@ -37,6 +37,9 @@ class LoginActivity : AppCompatActivity() {
 
         //Setting up an onClickListener for the sign up button
         findViewById<Button>(R.id.bt_signUp).setOnClickListener{
+            val username = findViewById<EditText>(R.id.et_username).text.toString()
+            val password = findViewById<EditText>(R.id.et_password).text.toString()
+            signUpUser(username, password)
             goToSignUpActivity()
         }
         //End of onCreate()
