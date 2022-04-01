@@ -1,6 +1,5 @@
 package com.example.steal_tastic
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -59,6 +58,32 @@ class LoginActivity : AppCompatActivity() {
         //end of loginUser()
     }
 
+    private fun signUpUser(username: String, password: String) {
+        //Creating the ParseUser
+        val user = ParseUser()
+
+        //Setting the fields for the user to be created
+        user.setUsername(username)
+        user.setPassword(password)
+
+        //Was signup successful?
+        user.signUpInBackground { e ->
+            if (e == null) {
+                Log.i(TAG, "Successfully signed up user")
+                //Navigate the user to the MainActivity
+                goToSignUpActivity()
+            } else {
+                //Show toast to indicate user success
+                Toast.makeText(this, "Unsuccessful sign up", Toast.LENGTH_SHORT).show()
+
+                //for the developer to see whats wrong
+                e.printStackTrace()
+            }
+
+        }
+        //End of signUpUser()
+    }
+
     //Creating a method to enter main activity
     private fun goToMainActivity(){
         val intent = Intent(this@LoginActivity, MainActivity::class.java)
@@ -69,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
 
     //Creating a method to enter SignUpActivity (tags)
     private fun goToSignUpActivity(){
-        val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
+        val intent = Intent(this@LoginActivity, AddFirstTagsActivity::class.java)
         startActivity(intent)
         finish()
     }

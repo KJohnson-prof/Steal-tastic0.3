@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Stealtastic">
         <activity
-            android:name=".SignUpActivity"
+            android:name=".AddFirstTagsActivity"
             android:exported="false" />
 
         <meta-data
