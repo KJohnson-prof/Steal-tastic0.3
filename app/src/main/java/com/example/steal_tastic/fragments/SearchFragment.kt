@@ -21,9 +21,9 @@ import com.parse.ParseQuery
 open class SearchFragment : Fragment() {
 
     lateinit var adapter: PostAdapter
-    lateinit var  SearchRecyclerView: RecyclerView
+    lateinit var  searchRecyclerView: RecyclerView
     var allPosts: MutableList<Post> = mutableListOf()
-    lateinit var swipeContainer: SwipeRefreshLayout
+    //lateinit var swipeContainer: SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,11 +37,11 @@ open class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<Button>(R.id.btnSearch).setOnClickListener {
-            val searchFor = view.findViewById<EditText>(R.id.tvSearch).text.toString()
+            val searchFor = view.findViewById<EditText>(R.id.et_search).text.toString()
             queryPosts(searchFor)
         }
 
-        SearchRecyclerView = view.findViewById(R.id.SearchRecyclerView)
+        searchRecyclerView = view.findViewById(R.id.SearchRecyclerView)
 
         //swipeContainer = view.findViewById(R.id.swipeContainer)
 
@@ -62,10 +62,10 @@ open class SearchFragment : Fragment() {
         //3. Create adapter that will bridge data and row layout (PostAdapter)
         //4. Set adapter on RecyclerView
         adapter = PostAdapter(requireContext(), allPosts as ArrayList<Post>)
-        SearchRecyclerView.adapter = adapter
+        searchRecyclerView.adapter = adapter
         //5. Set layout manager on RecyclerView
 
-        SearchRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        searchRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         //queryPosts()
 
@@ -91,9 +91,17 @@ open class SearchFragment : Fragment() {
                         }
 
                         for(item in posts){
+                            val currentPostTags = item.getTagList()
+                            if (currentPostTags != null) {
+                                for(i in 0..currentPostTags.length())
+                                    if(currentPostTags.get(i) == string){
+                                        allPosts.add(item)
+                                    }
+                            }
+
                             //if(){ //if post has a tag of search value the add to list.
                                 //Search the post's tag array for this -Kristle
-                                allPosts.add(item)
+                                //allPosts.add(item)
                             //}
 
                         }
@@ -102,7 +110,7 @@ open class SearchFragment : Fragment() {
                         //allPosts.addAll(posts)
                         adapter.notifyDataSetChanged()
                         // Now we call setRefreshing(false) to signal refresh has finished
-                        swipeContainer.setRefreshing(false)
+                        //swipeContainer.setRefreshing(false)
                     }
                 }
             }

@@ -1,6 +1,8 @@
 package com.example.steal_tastic
 
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +15,10 @@ import org.json.JSONArray
 
 @ParseClassName("Post")
 
-class Post : ParseObject() {
+class Post() : ParseObject() {
+    constructor(parcel: Parcel) : this() {
+    }
+
     fun getImage(): ParseFile?{
         return getParseFile(KEY_IMAGE)
     }
@@ -56,12 +61,28 @@ class Post : ParseObject() {
         put(KEY_TAGLIST, tagList)
     }
 
-    companion object{
-        const val KEY_IMAGE = "image"
-        const val KEY_USER = "user"
-        const val KEY_ITEMNAME = "itemName"
-        const val KEY_ADDRESS = "address"
-        const val KEY_DESCRIPTION = "description"
-        const val KEY_TAGLIST = "tagList"
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        super.writeToParcel(parcel, flags)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Post> {
+        override fun createFromParcel(parcel: Parcel): Post {
+            return Post(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Post?> {
+            return arrayOfNulls(size)
+        }
+
+        val KEY_IMAGE = "image"
+        val KEY_USER = "user"
+        val KEY_ITEMNAME = "itemName"
+        val KEY_ADDRESS = "address"
+        val KEY_DESCRIPTION = "description"
+        val KEY_TAGLIST = "tagList"
     }
 }
