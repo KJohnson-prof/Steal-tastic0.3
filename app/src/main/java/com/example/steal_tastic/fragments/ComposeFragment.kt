@@ -53,14 +53,14 @@ class ComposeFragment : Fragment() {
             var tags = view.findViewById<EditText>(R.id.etTag).text.toString()
 
             // tag string to arraylist block
-            val tagList = arrayListOf<String>()
+            var tagList = arrayListOf<String>()
             val reps = tags.filter{it == ';'}.count()
             var index = tags.indexOf(";")
                 for (i in 0..reps) {
                     if(index == -1)
-                        tagList[i] = tags
+                        tagList.add(tags)
                     else {
-                        tagList[i] = tags.substring(0, index)
+                        tagList.add(tags.substring(0, index))
                         tags = tags.substring(index+1, tags.length)
                     }
                     index = tags.indexOf(";")
