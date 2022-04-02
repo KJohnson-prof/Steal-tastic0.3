@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.example.steal_tastic.Post
 import com.example.steal_tastic.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.parse.ParseFile
 import com.parse.ParseUser
 import java.io.File
@@ -93,10 +94,11 @@ class ComposeFragment : Fragment() {
 
         post.saveInBackground(){exception ->
             if(exception != null){
-                Log.e(TAG, "Error while saving post")
+                Toast.makeText(requireContext(), "Error While Saving Your Post", Toast.LENGTH_SHORT).show()
                 exception.printStackTrace()
             }else{
-                Log.i(TAG, "Successfully saved post")
+                Toast.makeText(requireContext(), "Successfully Saved Post", Toast.LENGTH_SHORT).show()
+                fragmentManager?.beginTransaction()?.replace(R.id.flContainer, FeedFragment())?.commit()
             }
         }
     }
