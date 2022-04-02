@@ -84,11 +84,21 @@ open class SearchFragment : Fragment() {
             } else {
                 adapter.clear()
                 if (posts != null) {
-                    for (post in posts) {
-                        Log.i(TAG, "Post: " + post.getDescription())
-                    }
+//                    for (post in posts) {
+//                        Log.i(TAG, "Post: " + post.getDescription())
+//                    }
 
-                    allPosts.addAll(posts)
+                    for (item in 0 until posts.size) {
+                        val tagArr = posts[item].getTagList()?.get(0)?.toString()?.split(",")
+                        if (tagArr != null) {
+                            for(tag in tagArr){
+                                if(tag == string){
+                                    allPosts.add(posts[item])
+                                }
+
+                            }
+                        }
+                    }
                     adapter.notifyDataSetChanged()
 
 //                    for (item in posts) {
