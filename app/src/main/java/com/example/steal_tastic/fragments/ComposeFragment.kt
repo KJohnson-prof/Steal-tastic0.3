@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +16,9 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
 import com.example.steal_tastic.Post
 import com.example.steal_tastic.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.parse.ParseFile
 import com.parse.ParseUser
 import java.io.File
@@ -31,6 +30,7 @@ class ComposeFragment : Fragment() {
     val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034
     val photoFileName = "photo.jpg"
     var photoFile: File? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,6 +80,7 @@ class ComposeFragment : Fragment() {
         view.findViewById<Button>(R.id.btnPic).setOnClickListener{
             onLaunchCamera()
         }
+
     }
 
     fun submitPost(description: String, user: ParseUser, file: File, itemName: String, address: String, tags: ArrayList<String>){
