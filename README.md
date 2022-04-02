@@ -30,8 +30,8 @@ A community driven app meant to find and share deals in your area.
 
 * User can register a new account
 * [X]User can login
-* User can make a post using picture, description, address, and add categories
-* user can view posts from others
+* [X]User can make a post using picture, description, address, and add categories
+* [X]user can view posts from others
 * user can view posts of a specific category
 
 **Optional Nice-to-have Stories**
@@ -44,7 +44,10 @@ A community driven app meant to find and share deals in your area.
 * Settings screen
 
 **Progress**
+**Week 1 Progress**
 <img src="week1Progress.gif"/>
+**Week 2 Progress**
+<img src="week2Progress.gif"/>
 
 ### 2. Screen Archetypes
 
