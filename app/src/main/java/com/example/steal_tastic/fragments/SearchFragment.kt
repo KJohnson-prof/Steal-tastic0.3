@@ -78,43 +78,43 @@ open class SearchFragment : Fragment() {
         query.include(Post.KEY_USER)
         // Return the posts in descending order: ie newer posts will appear first
         query.addDescendingOrder("createdAt")
-        query.findInBackground(object : FindCallback<Post> {
-            override fun done(posts: MutableList<Post>?, e: ParseException?) {
-                if(e != null) {
-                    Log.e(TAG, "Error fetching posts")
-                } else {
-                    adapter.clear()
-                    if(posts != null) {
-                        for (post in posts) {
-                            Log.i(TAG, "Post: " + post.getDescription() )
-                        }
-
-                        for(item in posts){
-                            val currentPostTags = item.getTagList()
-                            if (currentPostTags != null) {
-                                for(i in 0..currentPostTags.length())
-                                    if(currentPostTags.get(i) == string){
-                                        allPosts.add(item)
-                                    }
-                            }
-
-                            //if(){ //if post has a tag of search value the add to list.
-                                //Search the post's tag array for this -Kristle
-                                //allPosts.add(item)
-                            //}
-
-                        }
-
-
-                        //allPosts.addAll(posts)
-                        adapter.notifyDataSetChanged()
-                        // Now we call setRefreshing(false) to signal refresh has finished
-                        //swipeContainer.setRefreshing(false)
+        query.findInBackground { posts, e ->
+            if (e != null) {
+                Log.e(TAG, "Error fetching posts")
+            } else {
+                adapter.clear()
+                if (posts != null) {
+                    for (post in posts) {
+                        Log.i(TAG, "Post: " + post.getDescription())
                     }
+
+                    allPosts.addAll(posts)
+                    adapter.notifyDataSetChanged()
+
+//                    for (item in posts) {
+//                        val currentPostTags = item.getTagList()
+//                        if (currentPostTags != null) {
+//                            for (i in 0..currentPostTags.length())
+//                                if (currentPostTags.get(i) == string) {
+//                                    allPosts.add(item)
+//                                }
+//                        }
+
+                        //if(){ //if post has a tag of search value the add to list.
+                        //Search the post's tag array for this -Kristle
+                        //allPosts.add(item)
+                        //}
+
+//                    }
+
+
+                    //allPosts.addAll(posts)
+                    //adapter.notifyDataSetChanged()
+                    // Now we call setRefreshing(false) to signal refresh has finished
+                    //swipeContainer.setRefreshing(false)
                 }
             }
-
-        })
+        }
     }
     companion object {
         const val TAG = "SearchFragment"
