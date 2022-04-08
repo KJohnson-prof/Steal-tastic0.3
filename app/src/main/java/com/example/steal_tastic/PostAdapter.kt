@@ -45,8 +45,8 @@ class PostAdapter(val context: Context, val posts: MutableList<Post>) : Recycler
 
         fun bind(post: Post){
             tvItem.text = post.getItemName()
-            tvAddress.text = post.getAddress()
-            tvDescription.text = post.getDescription()
+            tvAddress.text = "Location: " + post.getAddress()
+            tvDescription.text = "Description: " + post.getDescription()
 
             tvTag.text = "Tags: "
 
