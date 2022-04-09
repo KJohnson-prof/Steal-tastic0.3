@@ -44,11 +44,13 @@ A community driven app meant to find and share deals in your area.
 * Settings screen
 
 **Progress**
-##**Week 1 Progress**
+**Week 1 Progress**
 <img src="week1Progress.gif"/>
-##**Week 2 Progress**
+
+**Week 2 Progress**
 <img src="week2Progress.gif"/>
-##**Week 3 Progress**
+
+**Week 3 Progress**
 <img src="week3Progress.gif"/>
 
 ### 2. Screen Archetypes
